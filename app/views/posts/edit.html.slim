@@ -1,0 +1,9 @@
+h1 style="margin-left:50px" = "Editing Post"
+
+= render 'form', post: @post
+
+br
+
+div style="margin-left:30%"
+  = link_to 'Show', @post, class: "btn btn-info", style: "margin-right:10px;"
+  = link_to 'Back', posts_path, class: "btn btn-warning"

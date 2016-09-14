@@ -1,0 +1,32 @@
+p#notice = notice
+
+h1 style="margin-left:50px" = "Post"
+
+table.table.table-striped align="center" style="width:60%"
+  tbody
+    tr
+      td 
+        strong = "Title"
+      td
+        = @post.title
+
+    tr
+      td
+        strong = "Text:"
+      td
+        = @post.text
+
+/ .row
+/   .col-md-3 style="text-align:center"
+/     strong = "Title:"
+/   .col-md-6
+/     = @post.title
+
+/ .row
+/   .col-md-3 style="text-align:center"
+/     strong = "Text:"
+/   .col-md-6
+/     = @post.text
+center
+  = link_to 'Edit', edit_post_path(@post), class: "btn btn-info", style: "margin-right:10px;"
+  = link_to 'Back', posts_path, class: "btn btn-warning"
