@@ -1,0 +1,43 @@
+p#notice = notice
+
+h1 style="margin-left:50px" = "Blog"
+
+table.table.table-striped align="center" style="width:60%"
+  tbody
+    tr
+      td 
+        strong = "Title"
+      td
+        = @blog.title
+
+    tr
+      td
+        strong = "Description"
+      td
+        = @blog.description
+
+    tr
+      td
+        strong = "Owner"
+      td
+        = @blog.user.first_name
+
+/ .row
+/   .col-md-3 style="text-align:center"
+/     strong = "Title:"
+/   .col-md-6
+/     = @post.title
+
+/ .row
+/   .col-md-3 style="text-align:center"
+/     strong = "Text:"
+/   .col-md-6
+/     = @post.text
+center
+  = link_to 'Edit', edit_blog_path(@blog), class: "btn btn-info", style: "margin-right:10px;"
+  = link_to 'Back', blogs_path, class: "btn btn-warning"
+
+- if @blog.user == current_user
+  = render partial: 'posts/new', locals: { post: @post, blog: @blog } 
+
+= render partial: 'posts/index', locals: { posts: @posts, blog: @blog }

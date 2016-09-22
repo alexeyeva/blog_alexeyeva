@@ -1,0 +1,9 @@
+h1 style="margin-left:50px" = "Editing Blog"
+
+= render 'form', blog: @blog
+
+br
+
+div style="margin-left:30%"
+  = link_to 'Show', @blog, class: "btn btn-info", style: "margin-right:10px;"
+  = link_to 'Back', blogs_path, class: "btn btn-warning"

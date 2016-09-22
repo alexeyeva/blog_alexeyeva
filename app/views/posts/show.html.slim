@@ -29,4 +29,4 @@ table.table.table-striped align="center" style="width:60%"
 /     = @post.text
 center
   = link_to 'Edit', edit_post_path(@post), class: "btn btn-info", style: "margin-right:10px;"
-  = link_to 'Back', posts_path, class: "btn btn-warning"
+  = link_to 'Back', @post.blog, class: "btn btn-warning"

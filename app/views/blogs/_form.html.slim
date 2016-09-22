@@ -1,0 +1,23 @@
+div style="margin-left:30%"
+  = form_for blog, html: { style: "width:60%" } do |f|
+    - if blog.errors.any?
+      #error_explanation
+        h2
+          = pluralize(blog.errors.count, "error")
+          | "prohibited this blog from being saved:"
+
+        ul
+        - blog.errors.full_messages.each do |message|
+          li = message
+
+
+    .form-group
+      = f.label :title
+      = f.text_field :title, class: "form-control"
+
+    .form-group
+      = f.label :description
+      = f.text_area :description, class: "form-control"
+
+    .actions
+      = f.submit class: "btn btn-success"

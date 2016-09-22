@@ -1,0 +1,34 @@
+h1 style="margin-left:50px" = "Editing Profile"
+
+div style="margin-left:30%"
+  = form_for @user, html: { style: "width:60%" } do |f|
+    - if @user.errors.any?
+      #error_explanation
+        h2
+          = pluralize(post.errors.count, "error")
+          | "prohibited this user from being saved:"
+
+        ul
+        - @user.errors.full_messages.each do |message|
+          li = message
+
+
+    .form-group
+      = f.label :password
+      = f.password_field :password, class: "form-control"
+
+    .form-group
+      = f.label :first_name
+      = f.text_field :first_name, class: "form-control"
+
+    .form-group
+      = f.label :last_name
+      = f.text_field :last_name, class: "form-control"
+
+    .actions
+      = f.submit class: "btn btn-success"
+
+br
+
+div style="margin-left:30%"
+  = link_to 'Back', root_path, class: "btn btn-warning"

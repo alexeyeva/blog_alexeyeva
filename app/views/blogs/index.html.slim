@@ -1,0 +1,29 @@
+p#notice
+  = notice
+
+h1 style="margin-left:50px" = "Blogs"
+
+table.table.table-striped align="center" style="width:60%"
+  thead
+    tr
+      th = "Title"
+      th = "Owner"
+      th
+
+  tbody
+    - @blogs.each do |blog|
+      tr
+        td 
+          = link_to blog.title, blog
+        td
+          = blog.user.first_name
+        td align="right"
+          = link_to 'Show', blog, class: "btn btn-info", style: "margin-right:10px;"
+          - if blog.user == current_user
+            = link_to 'Edit', edit_blog_path(blog), class: "btn btn-info", style: "margin-right:10px;"
+            = link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+
+br
+
+center
+  = link_to 'New blog', new_blog_path, class: "btn btn-success"

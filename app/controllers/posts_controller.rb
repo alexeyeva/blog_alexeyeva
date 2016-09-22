@@ -1,16 +1,17 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :like]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.includes(:post_info)
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    views = @post.post_info.views + 1
+    @post.post_info.update(views: views)
   end
 
   # GET /posts/new
@@ -27,12 +28,19 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
+    @post.blog_id = params[:blog_id]
 
     if @post.save
-      redirect_to @post, notice: 'Post was successfully created.'
+      redirect_to @post.blog, notice: 'Post was successfully created.'
     else
       render :new
     end
+  end
+
+  def like
+    @likes = @post.post_info.likes + 1
+    @post.post_info.update(likes: @likes)
+    redirect_to @post.blog
   end
 
   # PATCH/PUT /posts/1

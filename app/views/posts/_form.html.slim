@@ -1,14 +1,14 @@
 div style="margin-left:30%"
   = form_for post, html: { style: "width:60%" } do |f|
-    - if post.errors.any?
-      #error_explanation
-        h2
-          = pluralize(post.errors.count, "error")
-          | "prohibited this post from being saved:"
+    / - if post.errors.any?
+    /   #error_explanation
+    /     h2
+    /       = pluralize(post.errors.count, "error")
+    /       | "prohibited this post from being saved:"
 
-        ul
-        - post.errors.full_messages.each do |message|
-          li = message
+    /     ul
+    /     - post.errors.full_messages.each do |message|
+    /       li = message
 
 
     .form-group
@@ -20,4 +20,5 @@ div style="margin-left:30%"
       = f.text_area :text, class: "form-control"
 
     .actions
+      = hidden_field_tag 'blog_id', @blog.id
       = f.submit class: "btn btn-success"

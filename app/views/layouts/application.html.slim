@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title = "Blog"
+    = csrf_meta_tags
+
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  body
+    - if current_user
+      = link_to "Profile", edit_user_path(current_user), class: "btn btn-primary", style: "position:absolute; margin-top:10px; right:90px;"
+      = link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-danger", style: "position:absolute; margin-top:10px; right:10px;"
+    - else
+      = link_to "Sign up", new_user_registration_path, class: "btn btn-primary", style: "position:absolute; margin-top:10px; right:90px;"
+      = link_to "Log in", new_user_session_path, class: "btn btn-primary", style: "position:absolute; margin-top:10px; right:10px;"
+
+    = yield

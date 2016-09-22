@@ -1,0 +1,42 @@
+/ p#notice
+/   = notice
+
+h1 style="margin-left:50px" = "Posts"
+
+table.table.table-striped align="center" style="width:60%"
+  thead
+    tr
+      th = "Title"
+      th = "Text"
+      th
+
+  tbody
+    - @posts.each do |post|
+      tr
+        td 
+          = link_to post.title, post
+        td 
+          = post.text
+        td align="right"
+          = link_to 'Show', post, class: "btn btn-info", style: "margin-right:10px;"
+          - if post.user == current_user
+            = link_to 'Edit', edit_post_path(post), class: "btn btn-info", style: "margin-right:10px;"
+            = link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning", style: "margin-right:10px;"
+          = link_to "Like", like_post_path(post), class: "btn btn-danger"
+      tr style="text-align:right;"
+        td
+          
+        td
+          
+        td 
+          = "Views: "
+          = post.views
+          = "  Likes: "
+          = post.likes
+          = "  Rating: "
+          = post.rating
+
+br
+
+/ center
+/   = link_to 'New Post', new_post_path, class: "btn btn-success"
