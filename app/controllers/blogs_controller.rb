@@ -39,7 +39,7 @@ class BlogsController < ApplicationController
   private
 
     def find_posts
-      @posts = @blog.posts.includes(:post_info)
+      @posts = @blog.posts.includes(:post_info, :tags).order("post_infos.rating DESC").order(created_at: :desc)
     end
 
     def set_blog

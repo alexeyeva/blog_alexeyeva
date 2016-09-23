@@ -21,7 +21,11 @@ table.table.table-striped align="center" style="width:60%"
           = link_to 'Show', blog, class: "btn btn-info", style: "margin-right:10px;"
           - if blog.user == current_user
             = link_to 'Edit', edit_blog_path(blog), class: "btn btn-info", style: "margin-right:10px;"
-            = link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+            = link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", style: "margin-right:10px;"
+          - if blog.users.include?(current_user)
+            = link_to "Unsubscribe", subscriptions_path(params: { id: Subscription.where(blog_id: blog.id, user_id: current_user.id).first.id }), method: :delete, class: "btn btn-danger"
+          - else
+            = link_to "Subscribe", subscriptions_path(params: { blog: blog.id, user: current_user.id }), method: :post, class: "btn btn-success"
 
 br
 

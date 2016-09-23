@@ -16,17 +16,10 @@ table.table.table-striped align="center" style="width:60%"
       td
         = @post.text
 
-/ .row
-/   .col-md-3 style="text-align:center"
-/     strong = "Title:"
-/   .col-md-6
-/     = @post.title
-
-/ .row
-/   .col-md-3 style="text-align:center"
-/     strong = "Text:"
-/   .col-md-6
-/     = @post.text
 center
   = link_to 'Edit', edit_post_path(@post), class: "btn btn-info", style: "margin-right:10px;"
   = link_to 'Back', @post.blog, class: "btn btn-warning"
+
+= render partial: "comments/new", locals: { post: @post, comment: @comment }
+
+= render partial: "comments/index", locals: { post: @post, comment: @comment }

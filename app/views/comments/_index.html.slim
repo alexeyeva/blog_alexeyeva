@@ -1,0 +1,24 @@
+h1 style="margin-left:50px" = "Posts"
+
+table.table.table-striped align="center" style="width:60%"
+  thead
+    tr
+      th = "Text"
+      th = "Username"
+      th
+
+  tbody
+    - @comments.each do |comment|
+      tr
+        td 
+          = comment.text
+        td
+          = comment.user.first_name
+
+        td align="right"
+
+          - if post.user == current_user
+            = link_to 'Edit', edit_comment_path(comment), class: "btn btn-info", style: "margin-right:10px;"
+            = link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning", style: "margin-right:10px;"
+
+br

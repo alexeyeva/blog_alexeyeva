@@ -1,0 +1,32 @@
+h1 style="margin-left:50px" = "Blog"
+
+table.table.table-striped align="center" style="width:60%"
+  tbody
+    tr
+      td 
+        strong = "Title"
+      td
+        = "There is new post on blog "
+        = link_to @blog.title, blog_url(@blog)
+
+    tr
+      td
+        strong = "Here it is "
+      td
+        = @blog.description
+
+
+/ .row
+/   .col-md-3 style="text-align:center"
+/     strong = "Title:"
+/   .col-md-6
+/     = @post.title
+
+/ .row
+/   .col-md-3 style="text-align:center"
+/     strong = "Text:"
+/   .col-md-6
+/     = @post.text
+center
+  / = link_to 'Edit', edit_blog_path(@blog), class: "btn btn-info", style: "margin-right:10px;"
+  = link_to 'Blogs', blogs_url, class: "btn btn-warning"

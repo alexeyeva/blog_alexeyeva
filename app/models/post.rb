@@ -5,9 +5,18 @@ class Post < ApplicationRecord
   belongs_to :blog
   has_one :post_info
   has_and_belongs_to_many :tags
+  has_many :comments
 
   validates :user, presence: true
   validates :blog, presence: true
+  validates :title, presence: true
+
+  def tag_names
+    tags.pluck(:name)
+  end
+
+  def new_tags
+  end
 
   def likes
     post_info.likes

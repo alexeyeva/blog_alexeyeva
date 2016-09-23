@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :subscriptions
   has_many :blogs, through: :subscriptions
+  has_many :blogs
 
   validates :email, presence: true
   validates :email, confirmation: true

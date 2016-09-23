@@ -1,10 +1,16 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :like]
+  after_action :send_mails, only: [:create]
+  before_action :find_comments, only: :show
+  before_action :find_blog, only: [:show, :edit, :update]
+
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.includes(:post_info)
+    # raise params.inspect
+    @q = Post.ransack(params[:q])
+    @posts = @q.result.includes(:post_info, :tags).order("post_infos.rating DESC").order(created_at: :asc).to_a.uniq
   end
 
   # GET /posts/1
@@ -12,6 +18,8 @@ class PostsController < ApplicationController
   def show
     views = @post.post_info.views + 1
     @post.post_info.update(views: views)
+
+    @comment = Comment.new
   end
 
   # GET /posts/new
@@ -27,8 +35,19 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+
     @post.user = current_user
     @post.blog_id = params[:blog_id]
+
+    @post.tag_ids = params[:post][:tags].delete_if { |a| a == "" }
+
+    if params[:post][:new_tags]
+
+      @tag_names = params[:post][:new_tags].split(/\W+/)
+
+      @tag_names.map { |tag_name| Tag.new(name: tag_name, post_ids: [@post.id]).save }
+
+    end
 
     if @post.save
       redirect_to @post.blog, notice: 'Post was successfully created.'
@@ -68,6 +87,14 @@ class PostsController < ApplicationController
   end
 
   private
+
+    def find_blog
+      @blog = @post.blog
+    end
+
+    def find_comments
+      @comments = @post.comments.order(created_at: :desc)
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
@@ -75,6 +102,13 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :text)
+      params.require(:post).permit(:title, :text, :tags)
+    end
+
+    def send_mails
+      @blog = @post.blog
+      @blog.users.each do |user|
+        UserMailer.new_post_email(user, @blog).deliver_now
+      end
     end
 end

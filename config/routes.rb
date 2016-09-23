@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     get :like, on: :member
   end
 
+  resources :comments
+
+  resource :subscriptions, only: [:create, :destroy]
+
   resources :blogs
 
   resource :user, only: [:edit, :show]

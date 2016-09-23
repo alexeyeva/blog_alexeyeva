@@ -1,0 +1,7 @@
+h1 style="margin-left:50px" = "New Comment"
+
+= render 'comments/form', { comment: @comment, post: @post }
+
+br
+
+= link_to 'Back', root_path, class: "btn btn-warning", style: "margin-left:30%;"

@@ -19,6 +19,14 @@ div style="margin-left:30%"
       = f.label :text
       = f.text_area :text, class: "form-control"
 
+    .form-group
+      = f.label :tags
+      = f.collection_select :tags, Tag.all, :id, :name, { include_blank: true }, { class: "form-control", multiple: true  }
+
+    .form-group
+      = f.label :new_tags
+      = f.text_field :new_tags, value: "", class: "form-control"
+
     .actions
       = hidden_field_tag 'blog_id', @blog.id
       = f.submit class: "btn btn-success"
