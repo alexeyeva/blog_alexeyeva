@@ -61,8 +61,8 @@ Rails.application.configure do
                                           address:              'smtp.gmail.com',
                                           port:                 587,
                                           domain:               'example.com',
-                                          user_name:            '',
-                                          password:             '',
+                                          user_name:            'kateryna.alexeyeva@gmail.com',
+                                          password:             'me0wme0wM-fuck',
                                           authentication:       'plain',
                                           enable_starttls_auto: true  }
   config.action_mailer.perform_caching = false
