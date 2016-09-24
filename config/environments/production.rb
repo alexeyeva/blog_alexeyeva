@@ -1,3 +1,4 @@
+Rails.application.routes.default_url_options[:host] = 'blog-intellect.herokuapp.com'
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -48,8 +49,6 @@ Rails.application.configure do
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
-
-  config.routes.default_url_options[:host] = 'blog-intellect.herokuapp.com'
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
