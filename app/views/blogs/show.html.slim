@@ -1,5 +1,3 @@
-p#notice = notice
-
 h1 style="margin-left:50px" = "Blog"
 
 table.table.table-striped align="center" style="width:60%"
@@ -21,7 +19,7 @@ table.table.table-striped align="center" style="width:60%"
         strong = "Owner"
       td
         = @blog.user.first_name
-        
+
 center
   = link_to 'Edit', edit_blog_path(@blog), class: "btn btn-info", style: "margin-right:10px;"
   = link_to 'Back', blogs_path, class: "btn btn-warning"

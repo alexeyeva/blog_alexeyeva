@@ -1,14 +1,7 @@
 div style="margin-left:30%"
   = form_for blog, html: { style: "width:60%" } do |f|
-    - if blog.errors.any?
-      #error_explanation
-        h2
-          = pluralize(blog.errors.count, "error")
-          | "prohibited this blog from being saved:"
 
-        ul
-        - blog.errors.full_messages.each do |message|
-          li = message
+    = render partial: "layouts/errors", locals: { record: blog }
 
 
     .form-group

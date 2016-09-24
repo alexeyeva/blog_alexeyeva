@@ -1,6 +1,7 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   before_action :find_posts, only: :show
+  before_action :authenticate_user!, except: :index
 
   def index
     @blogs = Blog.all
@@ -34,6 +35,11 @@ class BlogsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @blog.destroy
+    redirect_to blogs_path, alert: "Blog was successfully deleted"
   end
 
   private

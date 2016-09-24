@@ -1,0 +1,10 @@
+p#notice
+  
+  - if notice
+    .alert.alert-success.fade.in style="height:50px;"
+      = link_to "&times;".html_safe, "#", class: "close", data: { dismiss: "alert" }, 'aria-label' => "close"
+      = notice
+  - elsif alert
+    .alert.alert-danger.fade.in style="height:50px;"
+      = link_to "&times;".html_safe, "#", class: "close", data: { dismiss: "alert" }, 'aria-label' => "close"
+      = alert

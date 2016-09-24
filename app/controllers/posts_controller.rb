@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :like]
-  after_action :send_mails, only: [:create]
   before_action :find_comments, only: :show
   before_action :find_blog, only: [:show, :edit, :update]
 
@@ -39,6 +38,8 @@ class PostsController < ApplicationController
     @post.user = current_user
     @post.blog_id = params[:blog_id]
 
+    @blog = Blog.find(params[:blog_id])
+
     @post.tag_ids = params[:post][:tags].delete_if { |a| a == "" }
 
     if params[:post][:new_tags]
@@ -51,6 +52,7 @@ class PostsController < ApplicationController
 
     if @post.save
       redirect_to @post.blog, notice: 'Post was successfully created.'
+      send_mails
     else
       render :new
     end

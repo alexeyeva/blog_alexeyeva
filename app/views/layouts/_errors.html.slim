@@ -1,0 +1,4 @@
+- if record.errors.any?
+  #error_explanation
+    - record.errors.full_messages.each do |message|
+      .alert.alert-danger = message

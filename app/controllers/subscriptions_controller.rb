@@ -1,4 +1,6 @@
 class SubscriptionsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @subscription = Subscription.new(blog_id: params[:blog], user_id: params[:user])
     if @subscription.save
@@ -13,4 +15,5 @@ class SubscriptionsController < ApplicationController
     @subscription.destroy
     redirect_to blogs_path, notice: "Subscription was successfully deleted"
   end
+  
 end

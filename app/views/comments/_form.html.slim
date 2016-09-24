@@ -1,6 +1,8 @@
 div style="margin-left:30%"
   = form_for comment, html: { style: "width:60%" } do |f|
 
+    = render partial: "layouts/errors", locals: { record: comment }
+
     .form-group
       = f.label :text
       = f.text_field :text, class: "form-control"

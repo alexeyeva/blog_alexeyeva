@@ -1,6 +1,3 @@
-/ p#notice
-/   = notice
-
 h1 style="margin-left:50px" = "Posts"
 
 table.table.table-striped align="center" style="width:60%"
@@ -43,7 +40,7 @@ table.table.table-striped align="center" style="width:60%"
           - post.tags.each do |tag|
             = link_to tag.name, posts_path(params: { q: { tags_name_eq: tag.name } })
             = ", "
-            
+
         td style="text-align:right;"
           = "Views: "
           = post.views
