@@ -15,4 +15,8 @@ class User < ApplicationRecord
   # validates :email, format: { with: /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/, message: "Only emails allowed" }
   validates :first_name, uniqueness: { scope: :email,  message: "should only one user with name and email" }
   validates_associated :posts
+
+  def name
+    self.first_name ? self.first_name : "noname"
+  end
 end

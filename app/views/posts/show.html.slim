@@ -15,7 +15,8 @@ table.table.table-striped align="center" style="width:60%"
         = @post.text
 
 center
-  = link_to 'Edit', edit_post_path(@post), class: "btn btn-info", style: "margin-right:10px;"
+  - if @post.user == current_user
+    = link_to 'Edit', edit_post_path(@post), class: "btn btn-info", style: "margin-right:10px;"
   = link_to 'Back', @post.blog, class: "btn btn-warning"
 
 = render partial: "comments/new", locals: { post: @post, comment: @comment }

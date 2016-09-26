@@ -21,7 +21,8 @@ table.table.table-striped align="center" style="width:60%"
         = @blog.user.first_name
 
 center
-  = link_to 'Edit', edit_blog_path(@blog), class: "btn btn-info", style: "margin-right:10px;"
+  - if @blog.user == current_user
+    = link_to 'Edit', edit_blog_path(@blog), class: "btn btn-info", style: "margin-right:10px;"
   = link_to 'Back', blogs_path, class: "btn btn-warning"
 
 - if @blog.user == current_user

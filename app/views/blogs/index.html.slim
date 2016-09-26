@@ -13,7 +13,7 @@ table.table.table-striped align="center" style="width:60%"
         td 
           = link_to blog.title, blog
         td
-          = blog.user.first_name
+          = blog.owner(current_user)
         td align="right"
           = link_to 'Show', blog, class: "btn btn-info", style: "margin-right:10px;"
 

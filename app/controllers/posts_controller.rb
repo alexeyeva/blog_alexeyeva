@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :like]
   before_action :find_comments, only: :show
   before_action :find_blog, only: [:show, :edit, :update]
+  before_action :authenticate_user!
 
 
   # GET /posts
