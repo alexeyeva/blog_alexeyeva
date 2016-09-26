@@ -16,7 +16,7 @@ table.table.table-striped align="center" style="width:60%"
         td 
           = post.text
         td
-          = post.user.first_name
+          = post.owner(current_user)
 
         td align="right"
 

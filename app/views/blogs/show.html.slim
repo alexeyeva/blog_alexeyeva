@@ -18,7 +18,7 @@ table.table.table-striped align="center" style="width:60%"
       td
         strong = "Owner"
       td
-        = @blog.user.first_name
+        = @blog.owner(current_user)
 
 center
   - if @blog.user == current_user

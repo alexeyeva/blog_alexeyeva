@@ -11,6 +11,10 @@ class Post < ApplicationRecord
   validates :blog, presence: true
   validates :title, presence: true
 
+  def owner(user)
+    self.user == user ? "You" : self.user.name
+  end
+
   def tag_names
     tags.pluck(:name)
   end
