@@ -1,7 +1,7 @@
 .nav
   - if current_user
     = link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-danger nav-buttons"
-    = link_to "Profile", edit_user_path(current_user), class: "btn btn-primary nav-buttons"
+    = link_to "Profile", edit_user_registration_path(current_user), class: "btn btn-primary nav-buttons"
     = link_to "Blogs", blogs_path, class: "btn btn-primary nav-buttons"
   - else
     = link_to "Log in", new_user_session_path, class: "btn btn-primary nav-buttons"

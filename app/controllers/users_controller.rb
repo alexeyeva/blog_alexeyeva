@@ -4,9 +4,9 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      render :edit, notice: 'Blog was successfully updated.'
+      redirect_to edit_user_path(current_user), notice: 'Blog was successfully updated.'
     else
-      render :edit
+      edit_user_path(current_user)
     end
   end
 
